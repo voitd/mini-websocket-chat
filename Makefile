@@ -30,4 +30,7 @@ publish:
 deploy:
 	git push heroku
 
+fix:
+  eslint --fix .
+
 .PHONY: test
