@@ -2,8 +2,9 @@
 
 ### Chat app write on React + Redux + Forms
 
-> This is an educational project [Hexlet](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package)
-> Realtime chat app with websockets using Socket.io with React on the frontend with a Bootstrap UI, and > > deploing into Heroku
+> This is an educational project [Hexlet](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package).
+> Realtime chat app with websockets using Socket.io with React on the frontend with a Bootstrap UI, and
+> deploing into Heroku
 
 - [DEMO on Heroku](https://afternoon-woodland-62064.herokuapp.com/)
 
