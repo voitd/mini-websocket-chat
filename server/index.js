@@ -20,19 +20,19 @@ const setUpViews = (app) => {
   const domain = isDevelopment ? 'http://localhost:8080' : '';
   app.register(pointOfView, {
     engine: {
-      pug: Pug,
+      pug: Pug
     },
     defaultContext: {
-      assetPath: (filename) => `${domain}/assets/${filename}`,
+      assetPath: (filename) => `${domain}/assets/${filename}`
     },
-    templates: path.join(__dirname, 'views'),
+    templates: path.join(__dirname, 'views')
   });
 };
 
 const setUpStaticAssets = (app) => {
   app.register(fastifyStatic, {
     root: path.join(appPath, 'dist/public'),
-    prefix: '/assets',
+    prefix: '/assets'
   });
 };
 
