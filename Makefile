@@ -1,4 +1,5 @@
-install: install-deps
+install:
+	install-deps
 
 start:
 	heroku local -f Procfile.dev
@@ -31,6 +32,6 @@ deploy:
 	git push heroku
 
 fix:
-  eslint --fix .
+	eslint --fix .
 
 .PHONY: test

@@ -1,6 +1,0 @@
-{
-  "compilerOptions": {
-    "noImplicitAny": false
-  },
-  "exclude": ["node_modules", "**/*.spec.ts"]
-}

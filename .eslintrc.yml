@@ -1,0 +1,36 @@
+---
+parser: babel-eslint
+extends:
+  - airbnb-base
+  - airbnb/hooks
+  - eslint:recommended
+  - plugin:react/recommended
+  - plugin:jsx-a11y/recommended
+  - plugin:prettier/recommended
+
+plugins:
+  - react
+  - babel
+  - jest
+
+env:
+  browser: true
+  es6: true
+  jest: true
+  node: true
+
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 2020
+  sourceType: module
+
+rules:
+  import/no-unresolved: 0
+  import/extensions: 0
+  react/prop-types: 0
+
+settings:
+  react:
+    pragma: React
+    version: detect
