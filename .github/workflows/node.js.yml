@@ -23,14 +23,13 @@ jobs:
       - name: install npm packeges
         run: |
           make install
-        env:
-          CI: true
       - name: Run linter
         run: |
           make lint
       - name: Test & publish code coverage
-        run: | 
+        run: |
           make test
+
 #         uses: paambaati/codeclimate-action@v2.4.0
 #         env:
 #           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
