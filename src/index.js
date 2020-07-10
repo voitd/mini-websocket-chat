@@ -3,16 +3,17 @@ import 'regenerator-runtime/runtime';
 
 import '../assets/application.scss';
 
-// import faker from 'faker';
+import faker from 'faker';
 import gon from 'gon';
-// import cookies from 'js-cookie';
-// import io from 'socket.io-client';
+import cookies from 'js-cookie';
 import app from './app';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-// const { channels, messages, currentChannelId } = gon;
+const randomName = faker.name.findName();
+cookies.set('nickName', randomName);
+// TODO: cookie.get
 
-app(gon);
+app(gon, randomName);

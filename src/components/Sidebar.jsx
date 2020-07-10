@@ -1,24 +1,12 @@
 import React from 'react';
+import { createSlice } from '@reduxjs/toolkit';
 import { Button, Nav, Card } from 'react-bootstrap';
-// import { connect } from 'react-redux';
-// import * as actions from '../actions/index.js';
 
-// const mapStateToProps = (state) => {
-//   console.log('mapStateToProps -> state', state);
-//   const props = {
-//     channels: state.channels,
-//     currentChannelId: state.currentChannelId
-//   };
-//   return props;
-// };
-
-// const actionCreators = {
-//   toggleActiveChannel: actions.toggleActiveChannel
-// };
+import * as actions from '../actions/index.js';
 
 const Sidebar = (props) => {
   console.log('Sidebar -> props', props);
-  const handleToggleTaskState = (id) => () => {
+  const handleToggleChannel = (id) => () => {
     const { toggleActiveChannel } = props;
     toggleActiveChannel({ id });
   };
@@ -29,7 +17,7 @@ const Sidebar = (props) => {
         className="btn btn-outline-info mb-2"
         key={id}
         eventKey={id}
-        onClick={handleToggleTaskState(id)}>
+        onClick={handleToggleChannel(id)}>
         {`# ${name}`}
       </Nav.Link>
     ));
@@ -44,7 +32,7 @@ const Sidebar = (props) => {
         </Button>{' '}
       </Card.Header>
       <Card.Body>
-        <Nav activeKey={props.currentChannelId} className=" nav-pills flex-column font-weight-bold">
+        <Nav activeKey={props.currentChannelId} className="nav-pills flex-column font-weight-bold">
           {renderChannels()}
         </Nav>
       </Card.Body>
@@ -52,4 +40,3 @@ const Sidebar = (props) => {
   );
 };
 export default Sidebar;
-// export default connect(mapStateToProps, actionCreators)(Sidebar);
