@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
-import store from './store';
-import { addMessageSuccess } from './features/messages/messageSlice';
-import { updateChannels } from './features/channels/channelSlice';
+import store from '../store';
+import { addMessageSuccess } from '../features/messages/messageSlice';
+import { updateChannels } from '../features/channels/channelSlice';
 
 const socket = io();
 

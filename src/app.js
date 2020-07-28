@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import socket from './socket';
+import socket from './utils/socket';
 import getUser from './utils/user';
 import App from './components/App';
 import { updateMessages } from './features/messages/messageSlice';

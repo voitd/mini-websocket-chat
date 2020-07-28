@@ -2,13 +2,10 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import {
-  selectChannelIsLoading,
-  selectChannelError,
-} from '../features/channels/channelSlice';
+import { selectChannelIsLoading, selectChannelError } from '../features/channels/channelSlice';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
-import Alert from './Alert';
+import Alert from '../features/alerts/Alert';
 
 const App = () => {
   const isLoading = useSelector(selectChannelIsLoading);
@@ -17,7 +14,7 @@ const App = () => {
   return (
     <>
       {(isError || isLoading) && <Alert />}
-      <Row className='h-75 p-0'>
+      <Row className="h-75 p-0">
         <Col lg={3}>
           <Sidebar />
         </Col>

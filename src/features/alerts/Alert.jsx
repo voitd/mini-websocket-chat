@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Alert, Modal } from 'react-bootstrap';
-import {
-  selectChannelError,
-  selectChannelIsLoading,
-} from '../features/channels/channelSlice';
+import { selectChannelError, selectChannelIsLoading } from '../channels/channelSlice';
 
 const Error = () => {
   const isLoading = useSelector(selectChannelIsLoading);
@@ -23,11 +20,10 @@ const Error = () => {
     <Modal show={show}>
       <Alert
         variant={isLoading ? 'warning' : 'danger'}
-        className='mb-0'
+        className="mb-0"
         onClose={() => setShow(false)}
         show
-        dismissible
-      >
+        dismissible>
         {isLoading ? 'Loading...' : renderHeader()}
       </Alert>
     </Modal>

@@ -23,7 +23,7 @@
     "type": "git",
     "url": "git@github.com:hexlet-components/projects-frontend-l4-server.git"
   },
-  "author": "Kirill Mokevnin",
+  "author": "Dimytr Voitenko",
   "license": "ISC",
   "homepage": "",
   "dependencies": {
@@ -100,7 +100,6 @@
     "jest-cli": "^25.5.4",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.7",
-    "undefined": "^0.1.0"
+    "typescript": "^3.9.7"
   }
 }
