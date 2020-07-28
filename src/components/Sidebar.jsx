@@ -13,10 +13,10 @@ const Sidebar = () => {
 
   return (
     <>
-      <Card border='info' className='h-100'>
-        <Card.Header className='d-flex justify-content-between font-weight-bold '>
+      <Card border="info" className="h-100">
+        <Card.Header className="d-flex justify-content-between font-weight-bold">
           CHANNELS
-          <Button variant='outline-info' size='sm' onClick={handleShowModal}>
+          <Button variant="outline-info" size="sm" onClick={handleShowModal}>
             <span>+</span>
           </Button>{' '}
         </Card.Header>
