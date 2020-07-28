@@ -9,7 +9,7 @@ import { updateMessages } from './features/messages/messageSlice';
 import { updateChannels, updateActiveChannelID } from './features/channels/channelSlice';
 
 export const UserContext = React.createContext({ name: 'Guess' });
-
+socket();
 const app = ({ channels, currentChannelId, messages }) => {
   store.dispatch(updateChannels(channels));
   store.dispatch(updateActiveChannelID(currentChannelId));
