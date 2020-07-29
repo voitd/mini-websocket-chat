@@ -34,8 +34,8 @@ const Chat = () => {
 
   const renderActionButtons = () => {
     const actions = {
-      renaming: '\u270D',
-      removing: '\u274C'
+      renaming: '✏️',
+      removing: '❌'
     };
 
     const handleShowModal = (type) => () => {
