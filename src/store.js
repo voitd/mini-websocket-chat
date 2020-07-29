@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import channelReducer from './features/channels/channelSlice';
 import messageReducer from './features/messages/messageSlice';
 import modalReducer from './features/modals/modalSlice';
-import alertReducer from './features/alerts/errorsSlice';
+import alertReducer from './features/alerts/alertSlice';
 
 /* eslint-disable no-underscore-dangle */
 const ext = window.__REDUX_DEVTOOLS_EXTENSION__;

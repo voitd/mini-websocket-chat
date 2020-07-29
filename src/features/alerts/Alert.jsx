@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Alert, Modal } from 'react-bootstrap';
-import { selectChannelError, selectChannelIsLoading } from '../channels/channelSlice';
+import { selectError, selectLoadingState } from './alertSlice';
 
-const Error = () => {
-  const isLoading = useSelector(selectChannelIsLoading);
-  const error = useSelector(selectChannelError);
+const AlertModal = () => {
+  const isLoading = useSelector(selectLoadingState);
+  const error = useSelector(selectError);
 
   const [show, setShow] = useState(true);
 
@@ -30,4 +30,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default AlertModal;

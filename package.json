@@ -9,6 +9,7 @@
   "engines": {
     "node": ">= 13"
   },
+  "proxy": "http://localhost:8081",
   "scripts": {
     "test": "jest",
     "build-server": "babel server --out-dir dist --source-maps inline && cp -r server/views dist/views",
@@ -27,17 +28,16 @@
   "license": "ISC",
   "homepage": "",
   "dependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
-    "@babel/node": "^7.10.5",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/cli": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@popperjs/core": "^2.4.4",
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.19.2",
-    "babel-loader": "^8.1.0",
     "bootstrap": "^4.5.0",
     "classnames": "^2.2.6",
     "core-js": "^3.6.5",
@@ -75,9 +75,7 @@
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "style-loader": "^1.2.1",
-    "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
@@ -85,6 +83,7 @@
     "acorn-jsx": "^5.2.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.5.1",
+    "babel-loader": "^8.0.0",
     "eslint": "^7.5.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -94,12 +93,14 @@
     "eslint-plugin-jest": "^23.19.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.4",
+    "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "jest": "^25.5.4",
     "jest-cli": "^25.5.4",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.0",
+    "webpack-dev-server": "^3.11.0"
   }
 }

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../../routes.js';
 
-export const addNewMessage = createAsyncThunk('messages/AddNewMessages', async (message) => {
+export const createNewMessage = createAsyncThunk('messages/createNewMessage', async (message) => {
   const body = { data: { attributes: message } };
   const { data } = await axios.post(routes.channelMessagesPath(message.channelId), body);
   return data.attributes;
@@ -16,7 +16,7 @@ const messageSlice = createSlice({
     updateMessages(state, { payload }) {
       state.push(...payload);
     },
-    addMessageSuccess(state, { payload }) {
+    createNewMessageSuccess(state, { payload }) {
       state.push(payload);
     }
   },
@@ -28,7 +28,7 @@ const messageSlice = createSlice({
   }
 });
 
-export const { addMessageSuccess, updateMessages } = messageSlice.actions;
+export const { createNewMessageSuccess, updateMessages } = messageSlice.actions;
 
 export default messageSlice.reducer;
 

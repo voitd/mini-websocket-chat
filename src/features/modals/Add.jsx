@@ -10,14 +10,10 @@ const Add = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
-    initialValues: { name: '' },
-    onSubmit: (values) => {
-      try {
-        dispatch(createChannel(values.name));
-        dispatch(hideModal());
-      } catch (err) {
-        console.error(err);
-      }
+    initialValues: { name: '', isSubmitting: false },
+    onSubmit: (values, { isSubmitting }) => {
+      dispatch(createChannel(values.name));
+      dispatch(hideModal());
     }
   });
 

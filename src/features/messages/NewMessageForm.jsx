@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { selectChannelId } from '../channels/channelSlice';
-import { addNewMessage } from './messageSlice';
+import { createNewMessage } from './messageSlice';
 import { UserContext } from '../../app';
 
 const time = new Date();
@@ -27,7 +27,7 @@ const NewMessageForm = () => {
         text: values.message,
         avatar: user.avatar
       };
-      dispatch(addNewMessage(message));
+      dispatch(createNewMessage(message));
       resetForm();
     }
   });

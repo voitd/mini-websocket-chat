@@ -10,21 +10,18 @@ export const createChannel = createAsyncThunk('chat/createChannel', async (name)
 
 export const renameChannel = createAsyncThunk('chat/renameChannel', async ({ name, id }) => {
   const body = { data: { attributes: { name } } };
-  const { data } = await axios.patch(routes.channelPath(id), body);
-  return data;
+  const response = await axios.patch(routes.channelPath(id), body);
+  return response.data.attributes;
 });
 
 export const removeChannel = createAsyncThunk('chat/removeChannel', async (id) => {
-  const body = { data: { id } };
-  const response = await axios.delete(routes.channelPath(id), body);
-  return response.data;
+  const response = await axios.delete(routes.channelPath(id));
+  return response.data.attributes;
 });
 
 const initialState = {
   channels: [],
-  currentChannelId: 1,
-  isLoading: false,
-  error: false
+  currentChannelId: 1
 };
 
 const channelSlice = createSlice({
@@ -32,52 +29,24 @@ const channelSlice = createSlice({
   initialState,
   reducers: {
     updateChannels(state, { payload }) {
-      if (!payload) return;
-      state.channels = state.channels.concat(payload);
+      state.channels.push(...payload);
+    },
+    createChannelSuccess(state, { payload }) {
+      state.channels.push(payload);
     },
     updateActiveChannelID(state, action) {
       state.currentChannelId = action.payload;
-    }
-  },
-  extraReducers: {
-    [createChannel.pending]: (state) => {
-      state.isLoading = true;
     },
-    [createChannel.fulfilled]: (state) => {
-      state.isLoading = false;
-      state.error = false;
-    },
-    [createChannel.rejected]: (state, { error }) => {
-      state.isLoading = false;
-      state.error = error.message;
-    },
-    [renameChannel.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [renameChannel.fulfilled]: (state, { payload }) => {
-      const { name, id } = payload.data.attributes;
+
+    renameChannelSuccess(state, { payload }) {
+      const { name, id } = payload;
       const channel = state.channels.find((chnl) => chnl.id === id);
       channel.name = name;
-      state.isLoading = false;
-      state.error = false;
     },
-    [renameChannel.rejected]: (state, { error }) => {
-      state.isLoading = false;
-      state.error = error.message;
-    },
-    [removeChannel.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [removeChannel.fulfilled]: (state, { meta }) => {
-      const id = meta.arg;
+    removeChannelSuccess(state, { payload }) {
+      const { id } = payload;
       state.channels = state.channels.filter((chnl) => chnl.id !== id);
       state.currentChannelId = initialState.currentChannelId;
-      state.isLoading = false;
-      state.error = false;
-    },
-    [removeChannel.rejected]: (state, { error }) => {
-      state.isLoading = false;
-      state.error = error.message;
     }
   }
 });
@@ -87,11 +56,9 @@ export const {
   updateChannels,
   updateActiveChannelID,
   createChannelSuccess,
-  editChannelSuccess,
-  deleteChannelSuccess
+  renameChannelSuccess,
+  removeChannelSuccess
 } = channelSlice.actions;
 
 export const selectChannel = (state) => state.chat.channels;
 export const selectChannelId = (state) => state.chat.currentChannelId;
-export const selectChannelError = (state) => state.chat.error;
-export const selectChannelIsLoading = (state) => state.chat.isLoading;

@@ -2,18 +2,18 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { selectChannelIsLoading, selectChannelError } from '../features/channels/channelSlice';
+import { selectError, selectLoadingState } from '../features/alerts/alertSlice';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
 import Alert from '../features/alerts/Alert';
 
 const App = () => {
-  const isLoading = useSelector(selectChannelIsLoading);
-  const isError = useSelector(selectChannelError);
-
+  const isLoading = useSelector(selectLoadingState);
+  const isError = useSelector(selectError);
+  const isShow = isError || isLoading;
   return (
     <>
-      {(isError || isLoading) && <Alert />}
+      {isShow && <Alert />}
       <Row className="h-75 p-0">
         <Col lg={3}>
           <Sidebar />

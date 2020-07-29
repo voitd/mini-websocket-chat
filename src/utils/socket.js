@@ -1,26 +1,31 @@
 import io from 'socket.io-client';
 import store from '../store';
-import { addMessageSuccess } from '../features/messages/messageSlice';
-import { updateChannels } from '../features/channels/channelSlice';
+import { createNewMessageSuccess } from '../features/messages/messageSlice';
+import {
+  createChannelSuccess,
+  renameChannelSuccess,
+  removeChannelSuccess
+} from '../features/channels/channelSlice';
 
 const socket = io();
 
 socket.on('newMessage', ({ data }) => {
   const { attributes } = data;
-  store.dispatch(addMessageSuccess(attributes));
+  store.dispatch(createNewMessageSuccess(attributes));
 });
 
 socket.on('newChannel', ({ data }) => {
   const { attributes } = data;
-  store.dispatch(updateChannels(attributes));
+  store.dispatch(createChannelSuccess(attributes));
 });
 
-socket.on('renameChannel', () => {
-  store.dispatch(updateChannels());
+socket.on('renameChannel', ({ data }) => {
+  const { attributes } = data;
+  store.dispatch(renameChannelSuccess(attributes));
 });
 
-socket.on('removeChannel', () => {
-  store.dispatch(updateChannels());
+socket.on('removeChannel', ({ data }) => {
+  store.dispatch(removeChannelSuccess(data));
 });
 
 export default socket;
