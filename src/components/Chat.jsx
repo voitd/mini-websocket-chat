@@ -24,7 +24,9 @@ const Chat = () => {
   const isRemovableChannel = channels.find((channel) => channel.id === channelID).removable;
 
   const renderModal = (type) => {
-    if (!type) return;
+    if (!type) {
+      return null;
+    }
 
     const Component = getModal(type);
     return <Component />;
