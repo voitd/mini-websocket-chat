@@ -26,4 +26,7 @@ const app = ({ channels, currentChannelId, messages }) => {
     document.getElementById('chat')
   );
 };
+
+socket();
+
 export default app;
