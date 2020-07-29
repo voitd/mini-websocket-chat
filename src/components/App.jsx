@@ -1,16 +1,14 @@
 import React from 'react';
-
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { selectError, selectLoadingState } from '../features/alerts/alertSlice';
+import { selectShowStatus } from '../features/alerts/alertSlice';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
 import Alert from '../features/alerts/Alert';
 
 const App = () => {
-  const isLoading = useSelector(selectLoadingState);
-  const isError = useSelector(selectError);
-  const isShow = isError || isLoading;
+  const isShow = useSelector(selectShowStatus);
+
   return (
     <>
       {isShow && <Alert />}

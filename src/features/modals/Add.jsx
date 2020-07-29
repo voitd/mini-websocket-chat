@@ -10,13 +10,12 @@ const Add = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
-    initialValues: { name: '', isSubmitting: false },
-    onSubmit: (values, { isSubmitting }) => {
+    initialValues: { name: '' },
+    onSubmit: (values) => {
       dispatch(createChannel(values.name));
       dispatch(hideModal());
     }
   });
-
   const handleCloseModal = () => {
     dispatch(hideModal());
   };
@@ -29,7 +28,7 @@ const Add = () => {
     <>
       <Modal show onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Add channel</Modal.Title>
+          <Modal.Title>Create channel</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -44,7 +43,7 @@ const Add = () => {
                 value={formik.values.name}
               />
             </FormGroup>
-            <input type="submit" className="btn btn-primary" value="submit" />
+            <input type="submit" className="btn btn-primary" value="Create" />
           </form>
         </Modal.Body>
       </Modal>
