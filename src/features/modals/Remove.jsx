@@ -11,12 +11,8 @@ const Rename = () => {
 
   const onSubmit = (id) => (e) => {
     e.preventDefault();
-    try {
-      dispatch(removeChannel(id));
-      dispatch(hideModal());
-    } catch (err) {
-      console.error(err);
-    }
+    dispatch(removeChannel(id));
+    dispatch(hideModal());
   };
 
   const handleCloseModal = () => {

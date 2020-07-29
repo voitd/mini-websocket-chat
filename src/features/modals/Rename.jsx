@@ -13,12 +13,8 @@ const Rename = () => {
   const formik = useFormik({
     initialValues: { name: '', id: channelID },
     onSubmit: (values) => {
-      try {
-        dispatch(renameChannel(values));
-        dispatch(hideModal());
-      } catch (err) {
-        console.error(err);
-      }
+      dispatch(renameChannel(values));
+      dispatch(hideModal());
     }
   });
 
