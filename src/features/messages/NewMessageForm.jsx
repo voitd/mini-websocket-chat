@@ -19,7 +19,6 @@ const NewMessageForm = () => {
       message: ''
     },
     onSubmit: (values, { resetForm }) => {
-      if (!values.message) return;
       const message = {
         channelId: currentChannelId,
         timestamp: formattedTime,
@@ -41,6 +40,7 @@ const NewMessageForm = () => {
           name="message"
           onChange={formik.handleChange}
           value={formik.values.message}
+          required
         />
 
         <InputGroup.Append>
