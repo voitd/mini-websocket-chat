@@ -11,7 +11,7 @@ const modalSlice = createSlice({
       state.procces = action.payload;
       state.isShow = true;
     },
-    hideModal: (state, action) => {
+    hideModal: (state) => {
       state.isShow = false;
     }
   }
