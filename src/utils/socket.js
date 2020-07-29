@@ -7,25 +7,25 @@ import {
   removeChannelSuccess
 } from '../features/channels/channelSlice';
 
-const socket = io();
+export default () => {
+  const socket = io();
 
-socket.on('newMessage', ({ data }) => {
-  const { attributes } = data;
-  store.dispatch(createNewMessageSuccess(attributes));
-});
+  socket.on('newMessage', ({ data }) => {
+    const { attributes } = data;
+    store.dispatch(createNewMessageSuccess(attributes));
+  });
 
-socket.on('newChannel', ({ data }) => {
-  const { attributes } = data;
-  store.dispatch(createChannelSuccess(attributes));
-});
+  socket.on('newChannel', ({ data }) => {
+    const { attributes } = data;
+    store.dispatch(createChannelSuccess(attributes));
+  });
 
-socket.on('renameChannel', ({ data }) => {
-  const { attributes } = data;
-  store.dispatch(renameChannelSuccess(attributes));
-});
+  socket.on('renameChannel', ({ data }) => {
+    const { attributes } = data;
+    store.dispatch(renameChannelSuccess(attributes));
+  });
 
-socket.on('removeChannel', ({ data }) => {
-  store.dispatch(removeChannelSuccess(data));
-});
-
-export default socket;
+  socket.on('removeChannel', ({ data }) => {
+    store.dispatch(removeChannelSuccess(data));
+  });
+};
