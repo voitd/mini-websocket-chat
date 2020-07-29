@@ -16,9 +16,8 @@ const alertSlice = createSlice({
       state.isLoading = payload;
     },
     clearError(state) {
-      state = initialState;
-      // state.isLoading = initialState.isLoading;
-      // state.error = initialState.error;
+      state.isLoading = initialState.isLoading;
+      state.error = initialState.error;
     }
   },
   extraReducers: {
@@ -69,8 +68,9 @@ const alertSlice = createSlice({
   }
 });
 
-export const selectLoadingState = (state) => state.alerts.isLoading;
 export const selectError = (state) => state.alerts.error;
+export const selectLoadingState = (state) => state.alerts.isLoading;
+export const selectShowStatus = (state) => !!state.alerts.error || state.alerts.isLoading;
 
 export const { createError, clearError, toggleLoadingState } = alertSlice.actions;
 export default alertSlice.reducer;
