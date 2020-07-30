@@ -4,19 +4,19 @@ import routes from '../../routes';
 
 export const createChannel = createAsyncThunk('chat/createChannel', async (name) => {
   const body = { data: { attributes: { name } } };
-  const response = await axios.post(routes.channelsPath(), body);
-  return response.data.attributes;
+  const { data } = await axios.post(routes.channelsPath(), body);
+  return data.attributes;
 });
 
 export const renameChannel = createAsyncThunk('chat/renameChannel', async ({ name, id }) => {
   const body = { data: { attributes: { name } } };
-  const response = await axios.patch(routes.channelPath(id), body);
-  return response.data.attributes;
+  const { data } = await axios.patch(routes.channelPath(id), body);
+  return data.attributes;
 });
 
 export const removeChannel = createAsyncThunk('chat/removeChannel', async (id) => {
-  const response = await axios.delete(routes.channelPath(id));
-  return response.data.attributes;
+  const { data } = await axios.delete(routes.channelPath(id));
+  return data.attributes;
 });
 
 const initialState = {
