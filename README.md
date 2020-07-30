@@ -11,9 +11,11 @@
 
 - [DEMO on Heroku](https://afternoon-woodland-62064.herokuapp.com/)
 
+## Build status
+
 ### Screenshot
 
-<img width="820" alt="mini-slack-clone" src="https://user-images.githubusercontent.com/60138143/88865702-35f8db80-d211-11ea-8d50-136ead01468e.png">
+<img width="820" alt="mini-slack-clone" src="https://user-images.githubusercontent.com/60138143/88957488-9a667a00-d2a7-11ea-9875-71be31802e6e.png">
 
 In this projects coding only frontend part. Backend as starting template is [here](https://github.com/hexlet-components/projects-frontend-l4-server)
 

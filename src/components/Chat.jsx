@@ -59,7 +59,7 @@ const Chat = () => {
   return (
     <Card border="info" className="h-100 d-flex">
       <Card.Header className="d-flex font-weight-bold">
-        <span className="mr-auto m-1">#{activeChannelName} </span>
+        <span className="mr-auto m-1"># {activeChannelName} </span>
         <span>{isRemovableChannel && renderActionButtons()}</span>
       </Card.Header>
       <Card.Body style={style}>

@@ -14,9 +14,11 @@ const Sidebar = () => {
   return (
     <Card border="info" className="h-100">
       <Card.Header className="d-flex justify-content-between font-weight-bold">
-        CHANNELS
+        <span className="mt-1">CHANNELS</span>
         <Button variant="outline-info" size="sm" onClick={handleShowModal}>
-          <span>+</span>
+          <span role="img" aria-label="add">
+            ➕
+          </span>
         </Button>{' '}
       </Card.Header>
       <Card.Body>

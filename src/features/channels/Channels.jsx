@@ -14,7 +14,7 @@ export default () => {
 
   return channels.map(({ id, name }) => (
     <Nav.Link disabled={channelId === id} key={id} onClick={handleToggleChannel(id)}>
-      <strong>{`#${name}`}</strong>
+      #<strong> {name}</strong>
     </Nav.Link>
   ));
 };
