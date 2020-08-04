@@ -8,20 +8,13 @@ import { showModal, selectModalStatus, selectModalType } from '../features/modal
 import { selectChannel, selectChannelId } from '../features/channels/channelSlice';
 
 const Chat = () => {
-  const style = {
-    maxHeight: 'calc(100vh - 250px)',
-    overflowY: 'auto',
-    display: 'flex',
-    flexDirection: 'column-reverse'
-  };
-
   const dispatch = useDispatch();
   const isShow = useSelector(selectModalStatus);
   const modalType = useSelector(selectModalType);
   const channels = useSelector(selectChannel);
   const channelID = useSelector(selectChannelId);
-  const activeChannelName = channels.find((channel) => channel.id === channelID).name;
-  const isRemovableChannel = channels.find((channel) => channel.id === channelID).removable;
+  const activeChannel = channels.find((channel) => channel.id === channelID);
+  const { name: activeChannelName, removable: isRemovableChannel } = activeChannel;
 
   const renderModal = (type) => {
     if (!type) {
@@ -62,7 +55,7 @@ const Chat = () => {
         <span className="mr-auto m-1"># {activeChannelName} </span>
         <span>{isRemovableChannel && renderActionButtons()}</span>
       </Card.Header>
-      <Card.Body style={style}>
+      <Card.Body className="d-flex flex-column-reverse overflow-auto">
         <Message />
       </Card.Body>
       <Card.Footer className="text-muted">
