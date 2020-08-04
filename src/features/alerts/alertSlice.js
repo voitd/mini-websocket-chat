@@ -1,13 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  isLoading: false,
-  error: false
-};
-
 const alertSlice = createSlice({
   name: 'alerts',
-  initialState,
+  initialState: {
+    isLoading: false,
+    error: false
+  },
   reducers: {
     createError(state, { payload }) {
       state.error = payload;
@@ -16,8 +14,8 @@ const alertSlice = createSlice({
       state.isLoading = payload;
     },
     clearError(state) {
-      state.isLoading = initialState.isLoading;
-      state.error = initialState.error;
+      state.isLoading = false;
+      state.error = false;
     }
   },
   extraReducers: {
