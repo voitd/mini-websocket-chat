@@ -10,17 +10,15 @@ const App = () => {
   const isShow = useSelector(selectShowStatus);
 
   return (
-    <>
+    <Row className="h-100 pb-3">
+      <Col lg={3}>
+        <Sidebar />
+      </Col>
+      <Col className="h-100">
+        <Chat />
+      </Col>
       {isShow && <Alert />}
-      <Row className="h-75 p-0">
-        <Col lg={3}>
-          <Sidebar />
-        </Col>
-        <Col lg={9}>
-          <Chat />
-        </Col>
-      </Row>
-    </>
+    </Row>
   );
 };
 export default App;
