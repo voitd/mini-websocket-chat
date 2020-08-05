@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import socket from './utils/socket';
-import getUser from './utils/user';
+import eventListen from './utils/socket';
+import { getUser } from './utils/getUser';
 import App from './components/App';
 import { updateMessages } from './features/messages/messageSlice';
 import { updateChannels, updateActiveChannelID } from './features/channels/channelSlice';
@@ -27,6 +27,6 @@ const app = ({ channels, currentChannelId, messages }) => {
   );
 };
 
-socket();
+eventListen(store);
 
 export default app;

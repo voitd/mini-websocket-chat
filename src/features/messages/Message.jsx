@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Media from 'react-bootstrap/Media';
 import { selectChannelId } from '../channels/channelSlice';
-import { selectMsgById } from './messageSlice';
+import { selectMessageById } from './messageSlice';
 
 const Message = () => {
   const currentChannelId = useSelector(selectChannelId);
-  const messages = useSelector((state) => selectMsgById(state, currentChannelId));
+  const messages = useSelector((state) => selectMessageById(state, currentChannelId));
 
   return messages.reverse().map(({ timestamp, nickname, text, avatar, id }) => {
     return (

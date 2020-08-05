@@ -25,7 +25,7 @@ const NewMessageForm = () => {
     initialValues: {
       message: ''
     },
-    onSubmit: (values, { resetForm, setSubmitting }) => {
+    onSubmit: (values, { resetForm, setSubmitting, setStatus }) => {
       const message = {
         channelId: currentChannelId,
         timestamp: formattedTime,
@@ -35,7 +35,10 @@ const NewMessageForm = () => {
       };
       dispatch(createNewMessage(message))
         .then(unwrapResult)
-        .catch((err) => dispatch(createError(err.message)))
+        .catch((err) => {
+          dispatch(createError(err.message));
+          setStatus(err);
+        })
         .finally(() => {
           setSubmitting(false);
           resetForm();

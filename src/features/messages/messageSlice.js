@@ -33,4 +33,5 @@ export const { createNewMessageSuccess, updateMessages } = messageSlice.actions;
 export default messageSlice.reducer;
 
 export const selectMessages = (state) => state;
-export const selectMsgById = (state, id) => state.messages.filter((msg) => msg.channelId === id);
+export const selectMessageById = (state, id) =>
+  state.messages.filter((msg) => msg.channelId === id);

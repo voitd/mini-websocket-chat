@@ -16,9 +16,11 @@ const Add = () => {
       dispatch(hideModal());
     }
   });
+
   const handleCloseModal = () => {
     dispatch(hideModal());
   };
+
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current.focus();

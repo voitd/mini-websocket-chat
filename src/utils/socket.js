@@ -1,5 +1,4 @@
 import io from 'socket.io-client';
-import store from '../store';
 import { createNewMessageSuccess } from '../features/messages/messageSlice';
 import {
   createChannelSuccess,
@@ -7,7 +6,7 @@ import {
   removeChannelSuccess
 } from '../features/channels/channelSlice';
 
-export default () => {
+export default (store) => {
   const socket = io();
 
   socket.on('newMessage', ({ data }) => {

@@ -8,8 +8,8 @@ const AlertModal = () => {
 
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectLoadingState);
   const error = useSelector(selectError);
+  const isLoading = useSelector(selectLoadingState);
 
   const handleClose = () => {
     setShow(false);
@@ -24,11 +24,11 @@ const AlertModal = () => {
   );
 
   return (
-    <Modal show={show}>
+    <Modal show={show} onHide={handleClose}>
       <Alert
         variant={isLoading ? 'warning' : 'danger'}
         className="mb-0"
-        onClose={handleClose()}
+        onClose={handleClose}
         show
         dismissible>
         {isLoading ? 'Loading...' : renderHeader()}
