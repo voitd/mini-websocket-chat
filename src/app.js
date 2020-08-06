@@ -2,12 +2,18 @@ import { configureStore } from '@reduxjs/toolkit';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import io from 'socket.io-client';
+import {
+  createChannelSuccess,
+  removeChannelSuccess,
+  renameChannelSuccess
+} from '../features/channels/channelSlice';
+import { createNewMessageSuccess } from '../features/messages/messageSlice';
 import App from './components/App';
 import { updateActiveChannelID, updateChannels } from './features/channels/channelSlice';
 import { updateMessages } from './features/messages/messageSlice';
 import rootReducer from './reducers';
 import { getUser } from './utils/getUser';
-import listenEvents from './utils/socket';
 
 export const UserContext = React.createContext({ name: 'Guess' });
 
@@ -18,24 +24,42 @@ const app = ({ channels, currentChannelId, messages }) => {
 
   /* eslint-enable */
 
-  const store = configureStore({
-    reducer: rootReducer,
-    devtoolMiddleware
-  });
+  const store = configureStore({ reducer: rootReducer, devtoolMiddleware });
 
   store.dispatch(updateChannels(channels));
   store.dispatch(updateActiveChannelID(currentChannelId));
   store.dispatch(updateMessages(messages));
 
-  listenEvents(store);
+  const socket = io();
+
+  socket.on('newMessage', ({ data }) => {
+    const { attributes } = data;
+    store.dispatch(createNewMessageSuccess(attributes));
+  });
+
+  socket.on('newChannel', ({ data }) => {
+    const { attributes } = data;
+    store.dispatch(createChannelSuccess(attributes));
+  });
+
+  socket.on('renameChannel', ({ data }) => {
+    const { attributes } = data;
+    store.dispatch(renameChannelSuccess(attributes));
+  });
+
+  socket.on('removeChannel', ({ data }) => {
+    store.dispatch(removeChannelSuccess(data));
+  });
 
   const user = getUser();
 
   render(
     <Provider store={store}>
+      {' '}
       <UserContext.Provider value={user}>
+        {' '}
         <App />
-      </UserContext.Provider>
+      </UserContext.Provider>{' '}
     </Provider>,
     document.getElementById('chat')
   );
