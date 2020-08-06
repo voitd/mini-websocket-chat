@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store';
-import eventListen from './utils/socket';
-import { getUser } from './utils/getUser';
 import App from './components/App';
+import { updateActiveChannelID, updateChannels } from './features/channels/channelSlice';
 import { updateMessages } from './features/messages/messageSlice';
-import { updateChannels, updateActiveChannelID } from './features/channels/channelSlice';
+import store from './store';
+import { getUser } from './utils/getUser';
+import eventListen from './utils/socket';
 
 export const UserContext = React.createContext({ name: 'Guess' });
 
