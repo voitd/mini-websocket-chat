@@ -55,9 +55,7 @@ const app = ({ channels, currentChannelId, messages }) => {
 
   render(
     <Provider store={store}>
-      {' '}
       <UserContext.Provider value={user}>
-        {' '}
         <App />
       </UserContext.Provider>{' '}
     </Provider>,
