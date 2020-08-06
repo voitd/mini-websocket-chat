@@ -3,15 +3,15 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import io from 'socket.io-client';
+import App from './components/App';
 import {
   createChannelSuccess,
   removeChannelSuccess,
-  renameChannelSuccess
-} from '../features/channels/channelSlice';
-import { createNewMessageSuccess } from '../features/messages/messageSlice';
-import App from './components/App';
-import { updateActiveChannelID, updateChannels } from './features/channels/channelSlice';
-import { updateMessages } from './features/messages/messageSlice';
+  renameChannelSuccess,
+  updateActiveChannelID,
+  updateChannels
+} from './features/channels/channelSlice';
+import { createNewMessageSuccess, updateMessages } from './features/messages/messageSlice';
 import rootReducer from './reducers';
 import { getUser } from './utils/getUser';
 
