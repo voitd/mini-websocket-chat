@@ -6,7 +6,7 @@ import { updateActiveChannelID, updateChannels } from './features/channels/chann
 import { updateMessages } from './features/messages/messageSlice';
 import store from './store';
 import { getUser } from './utils/getUser';
-import eventListen from './utils/socket';
+import listenEvents from './utils/socket';
 
 export const UserContext = React.createContext({ name: 'Guess' });
 
@@ -27,6 +27,6 @@ const app = ({ channels, currentChannelId, messages }) => {
   );
 };
 
-eventListen(store);
+listenEvents(store);
 
 export default app;
