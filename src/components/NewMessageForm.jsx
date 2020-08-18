@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { UserContext } from '../../app';
-import { selectChannelId } from '../channels/channelSlice';
-import { createNewMessage } from './messageSlice';
+import { UserContext } from '../app';
+import { selectChannelId } from '../reducers/channelSlice';
+import { createNewMessage } from '../reducers/messageSlice';
 
 const time = new Date();
 const formattedTime = time.toLocaleString('ru', { hour: 'numeric', minute: 'numeric' });
@@ -52,7 +52,6 @@ const NewMessageForm = () => {
     onSubmit: handleSubmit
   });
 
-  console.log(formik);
   return (
     <Form onSubmit={formik.handleSubmit}>
       <InputGroup className="p-2">
