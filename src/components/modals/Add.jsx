@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
-import { createChannel } from '../channels/channelSlice';
-import { hideModal } from './modalSlice';
+import { createChannel } from '../../reducers/channelSlice';
+import { hideModal } from '../../reducers/modalSlice';
 
 // BEGIN
 const Add = () => {

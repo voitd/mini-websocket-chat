@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectChannel, updateActiveChannelID, selectChannelId } from './channelSlice';
+import { selectChannel, updateActiveChannelID, selectChannelId } from '../reducers/channelSlice';
 
 export default () => {
   const dispatch = useDispatch();

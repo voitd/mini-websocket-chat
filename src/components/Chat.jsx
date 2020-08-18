@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
-import getModal from '../features/modals';
-import NewMessageForm from '../features/messages/NewMessageForm';
-import Message from '../features/messages/Message';
-import { showModal, selectModalStatus, selectModalType } from '../features/modals/modalSlice';
-import { selectChannel, selectChannelId } from '../features/channels/channelSlice';
+import getModal from './modals';
+import NewMessageForm from './NewMessageForm';
+import Message from './Message';
+import { showModal, selectModalStatus, selectModalType } from '../reducers/modalSlice';
+import { selectChannel, selectChannelId } from '../reducers/channelSlice';
 
 const Chat = () => {
   const dispatch = useDispatch();
-  const isShow = useSelector(selectModalStatus);
+  const isShown = useSelector(selectModalStatus);
   const modalType = useSelector(selectModalType);
   const channels = useSelector(selectChannel);
   const channelID = useSelector(selectChannelId);
@@ -61,7 +61,7 @@ const Chat = () => {
       <Card.Footer className="text-muted">
         <NewMessageForm />
       </Card.Footer>
-      {isShow && renderModal(modalType)}
+      {isShown && renderModal(modalType)}
     </Card>
   );
 };

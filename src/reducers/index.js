@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import channelReducer from '../features/channels/channelSlice';
-import messageReducer from '../features/messages/messageSlice';
-import modalReducer from '../features/modals/modalSlice';
-import alertReducer from '../features/alerts/alertSlice';
+import channelReducer from './channelSlice';
+import messageReducer from './messageSlice';
+import modalReducer from './modalSlice';
+import alertReducer from './alertSlice';
 
 const rootReducer = combineReducers({
   chat: channelReducer,

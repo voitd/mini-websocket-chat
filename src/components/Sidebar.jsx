@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Card } from 'react-bootstrap';
-import Channels from '../features/channels/Channels';
-import { showModal } from '../features/modals/modalSlice';
+import Channels from './Channels';
+import { showModal } from '../reducers/modalSlice';
 
 const Sidebar = () => {
   const dispatch = useDispatch();

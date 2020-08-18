@@ -1,8 +1,8 @@
 import React from 'react';
 import Media from 'react-bootstrap/Media';
 import { useSelector } from 'react-redux';
-import { selectChannelId } from '../channels/channelSlice';
-import { selectMessages } from './messageSlice';
+import { selectChannelId } from '../reducers/channelSlice';
+import { selectMessages } from '../reducers/messageSlice';
 
 const Message = () => {
   const messages = useSelector(selectMessages);

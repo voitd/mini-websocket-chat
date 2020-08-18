@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import routes from '../../routes.js';
+import routes from '../routes.js';
 
 export const createNewMessage = createAsyncThunk('messages/createNewMessage', async (message) => {
   const body = { data: { attributes: message } };

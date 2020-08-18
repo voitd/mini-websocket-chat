@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import routes from '../../routes';
+import routes from '../routes';
 
 export const createChannel = createAsyncThunk('chat/createChannel', async (name) => {
   const body = { data: { attributes: { name } } };

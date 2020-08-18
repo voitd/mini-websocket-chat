@@ -10,10 +10,10 @@ import {
   renameChannelSuccess,
   updateActiveChannelID,
   updateChannels
-} from './features/channels/channelSlice';
-import { createNewMessageSuccess, updateMessages } from './features/messages/messageSlice';
+} from './reducers/channelSlice';
+import { createNewMessageSuccess, updateMessages } from './reducers/messageSlice';
 import rootReducer from './reducers';
-import { getUser } from './utils/getUser';
+import getUserData from './utils/getUserData';
 
 export const UserContext = React.createContext({ name: 'Guess' });
 
@@ -24,13 +24,13 @@ const app = ({ channels, currentChannelId, messages }) => {
 
   /* eslint-enable */
 
+  const socket = io();
+  const userData = getUserData();
   const store = configureStore({ reducer: rootReducer, devtoolMiddleware });
 
   store.dispatch(updateChannels(channels));
   store.dispatch(updateActiveChannelID(currentChannelId));
   store.dispatch(updateMessages(messages));
-
-  const socket = io();
 
   socket.on('newMessage', ({ data }) => {
     const { attributes } = data;
@@ -51,11 +51,9 @@ const app = ({ channels, currentChannelId, messages }) => {
     store.dispatch(removeChannelSuccess(data));
   });
 
-  const user = getUser();
-
   render(
     <Provider store={store}>
-      <UserContext.Provider value={user}>
+      <UserContext.Provider value={userData}>
         <App />
       </UserContext.Provider>{' '}
     </Provider>,

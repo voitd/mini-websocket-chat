@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { selectShowStatus } from '../features/alerts/alertSlice';
+import { selectShowStatus } from '../reducers/alertSlice';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
-import Alert from '../features/alerts/Alert';
+import Alert from './Alert';
 
 const App = () => {
-  const isShow = useSelector(selectShowStatus);
+  const isShown = useSelector(selectShowStatus);
 
   return (
     <Row className="h-100 pb-3">
@@ -17,7 +17,7 @@ const App = () => {
       <Col className="h-100">
         <Chat />
       </Col>
-      {isShow && <Alert />}
+      {isShown && <Alert />}
     </Row>
   );
 };
