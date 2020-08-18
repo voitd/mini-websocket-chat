@@ -19,7 +19,7 @@ export const removeChannel = createAsyncThunk('chat/removeChannel', async (id) =
   return data.attributes;
 });
 
-const channelSlice = createSlice({
+const { actions, reducer } = createSlice({
   name: 'chat',
   initialState: {
     channels: [],
@@ -35,7 +35,6 @@ const channelSlice = createSlice({
     updateActiveChannelID(state, action) {
       state.currentChannelId = action.payload;
     },
-
     renameChannelSuccess(state, { payload }) {
       const { name, id } = payload;
       const activeChannel = state.channels.find((channel) => channel.id === id);
@@ -43,20 +42,21 @@ const channelSlice = createSlice({
     },
     removeChannelSuccess(state, { payload }) {
       const { id } = payload;
+
       state.channels = state.channels.filter((channel) => channel.id !== id);
       state.currentChannelId = state.channels[0].id;
     }
   }
 });
 
-export default channelSlice.reducer;
+export default reducer;
 export const {
   updateChannels,
   updateActiveChannelID,
   createChannelSuccess,
   renameChannelSuccess,
   removeChannelSuccess
-} = channelSlice.actions;
+} = actions;
 
 export const selectChannel = (state) => state.chat.channels;
 export const selectChannelId = (state) => state.chat.currentChannelId;

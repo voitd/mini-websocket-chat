@@ -1,5 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../../routes.js';
 
@@ -9,15 +8,16 @@ export const createNewMessage = createAsyncThunk('messages/createNewMessage', as
   return data.attributes;
 });
 
-const messageSlice = createSlice({
+const { actions, reducer } = createSlice({
   name: 'messages',
   initialState: [],
   reducers: {
     updateMessages(state, { payload }) {
-      state.push(...payload);
+      const reversedMessages = payload.reverse();
+      state.push(...reversedMessages);
     },
     createNewMessageSuccess(state, { payload }) {
-      state.push(payload);
+      state.unshift(payload);
     }
   },
   extraReducers: {
@@ -28,10 +28,8 @@ const messageSlice = createSlice({
   }
 });
 
-export const { createNewMessageSuccess, updateMessages } = messageSlice.actions;
+export const { createNewMessageSuccess, updateMessages } = actions;
 
-export default messageSlice.reducer;
+export default reducer;
 
-export const selectMessages = (state) => state;
-export const selectMessageById = (state, id) =>
-  state.messages.filter((msg) => msg.channelId === id);
+export const selectMessages = (state) => state.messages;

@@ -1,20 +1,21 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Media from 'react-bootstrap/Media';
+import { useSelector } from 'react-redux';
 import { selectChannelId } from '../channels/channelSlice';
-import { selectMessageById } from './messageSlice';
+import { selectMessages } from './messageSlice';
 
 const Message = () => {
+  const messages = useSelector(selectMessages);
   const currentChannelId = useSelector(selectChannelId);
-  const messages = useSelector((state) => selectMessageById(state, currentChannelId));
+  const messagesByChannelID = messages.filter((message) => message.channelId === currentChannelId);
 
-  return messages.reverse().map(({ timestamp, nickname, text, avatar, id }) => {
+  return messagesByChannelID.map(({ timestamp, name, text, avatar, id }) => {
     return (
       <Media key={id}>
         <img width={64} height={64} className=" mr-2 p-1 rounded" src={avatar} alt="Avatar" />
         <Media.Body>
           <h6>
-            {nickname} <small>{timestamp}</small>
+            {name} <small>{timestamp}</small>
           </h6>
           <p>
             <strong>{text}</strong>

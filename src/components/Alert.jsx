@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import { Alert, Modal } from 'react-bootstrap';
-import { selectError, selectLoadingState, clearError } from './alertSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  clearError,
+  selectError,
+  selectLoadingState,
+  selectShowStatus
+} from '../reducers/alertSlice';
 
 const AlertModal = () => {
-  const [show, setShow] = useState(true);
-
   const dispatch = useDispatch();
 
   const error = useSelector(selectError);
+  const isShown = useSelector(selectShowStatus);
   const isLoading = useSelector(selectLoadingState);
 
   const handleClose = () => {
-    setShow(false);
     dispatch(clearError());
   };
 
@@ -24,7 +27,7 @@ const AlertModal = () => {
   );
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={isShown} onHide={handleClose}>
       <Alert
         variant={isLoading ? 'warning' : 'danger'}
         className="mb-0"

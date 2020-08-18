@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
 import React, { useContext, useEffect, useRef } from 'react';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '../../app';
-import { selectError, selectLoadingState } from '../alerts/alertSlice';
 import { selectChannelId } from '../channels/channelSlice';
 import { createNewMessage } from './messageSlice';
 
@@ -13,9 +13,7 @@ const formattedTime = time.toLocaleString('ru', { hour: 'numeric', minute: 'nume
 const NewMessageForm = () => {
   const dispatch = useDispatch();
   const currentChannelId = useSelector(selectChannelId);
-  const error = useSelector(selectError);
-  const isLoading = useSelector(selectLoadingState);
-  const isError = !!error;
+
   const { name, avatar } = useContext(UserContext);
 
   const inputRef = useRef(null);
@@ -23,48 +21,57 @@ const NewMessageForm = () => {
     inputRef.current.focus();
   }, []);
 
-  const handleSubmit = (values, { resetForm, setSubmitting }) => {
+  const handleSubmit = async (values, actions) => {
+    const { text } = values;
+    const { resetForm, setSubmitting, setErrors } = actions;
+
+    if (!text.trim()) return;
+
     const message = {
       channelId: currentChannelId,
       timestamp: formattedTime,
-      nickname: name,
-      text: values.message,
+      text,
+      name,
       avatar
     };
 
-    dispatch(createNewMessage(message));
-    resetForm();
-    setSubmitting(false);
+    try {
+      const result = await dispatch(createNewMessage(message));
+      unwrapResult(result);
+      resetForm();
+      setSubmitting(false);
+    } catch (err) {
+      setErrors(err.message);
+    }
   };
 
   const formik = useFormik({
     initialValues: {
-      message: ''
+      text: ''
     },
     onSubmit: handleSubmit
   });
 
+  console.log(formik);
   return (
     <Form onSubmit={formik.handleSubmit}>
       <InputGroup className="p-2">
         <FormControl
           placeholder="Type message..."
-          id="message"
-          name="message"
+          id="text"
+          name="text"
           ref={inputRef}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.message}
+          value={formik.values.text}
           disabled={formik.isSubmitting}
-          isInvalid={isError}
           required
         />
         <InputGroup.Append>
-          <Button type="submit" variant="outline-info" disabled={isLoading}>
+          <Button type="submit" variant="outline-info" disabled={formik.isSubmitting}>
             Send
           </Button>
         </InputGroup.Append>
-        {isError && <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>}
       </InputGroup>
     </Form>
   );
