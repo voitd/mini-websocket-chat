@@ -12,14 +12,13 @@ const formattedTime = time.toLocaleString('ru', { hour: 'numeric', minute: 'nume
 
 const NewMessageForm = () => {
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
   const currentChannelId = useSelector(selectChannelId);
 
   const { name, avatar } = useContext(UserContext);
 
-  const inputRef = useRef(null);
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+  const setFocus = () => inputRef.current.focus();
+  useEffect(setFocus);
 
   const handleSubmit = async (values, actions) => {
     const { text } = values;
