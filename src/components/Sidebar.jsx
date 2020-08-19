@@ -15,15 +15,15 @@ const Sidebar = () => {
     <Card border="info" className="h-100">
       <Card.Header className="d-flex justify-content-between font-weight-bold">
         <span className="mt-1">CHANNELS</span>
-        <Button variant="outline-info" size="sm" onClick={handleShowModal}>
+        <Button variant="outline" size="sm" onClick={handleShowModal}>
           <span role="img" aria-label="add">
             ➕
           </span>
-        </Button>{' '}
+        </Button>
       </Card.Header>
-      <Card.Body>
+      <Card.Header className="h-100">
         <Channels />
-      </Card.Body>
+      </Card.Header>
     </Card>
   );
 };

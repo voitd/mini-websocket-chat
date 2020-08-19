@@ -28,8 +28,7 @@ const { actions, reducer } = createSlice({
   }
 });
 
-export const { createNewMessageSuccess, updateMessages } = actions;
-
 export default reducer;
+export const { createNewMessageSuccess, updateMessages } = actions;
 
 export const selectMessages = (state) => state.messages;

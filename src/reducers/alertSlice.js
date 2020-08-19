@@ -7,12 +7,6 @@ const alertSlice = createSlice({
     error: false
   },
   reducers: {
-    createError(state, { payload }) {
-      state.error = payload;
-    },
-    toggleLoadingState(state, { payload }) {
-      state.isLoading = payload;
-    },
     clearError(state) {
       state.isLoading = false;
       state.error = false;

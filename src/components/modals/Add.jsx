@@ -10,6 +10,11 @@ import { hideModal } from '../../reducers/modalSlice';
 const Add = () => {
   const dispatch = useDispatch();
 
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const handleCloseModal = () => {
     dispatch(hideModal());
   };
@@ -27,11 +32,6 @@ const Add = () => {
     },
     onReset: () => handleCloseModal()
   });
-
-  const inputRef = useRef(null);
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   return (
     <>

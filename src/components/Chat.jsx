@@ -38,8 +38,8 @@ const Chat = () => {
     return Object.entries(actions).map(([action, emoji]) => (
       <Button
         key={action}
-        variant="outline-info"
-        className="m-1"
+        variant="outline"
+        className="mx-1"
         size="sm"
         onClick={handleShowModal(action)}>
         <span role="img" aria-label={action}>
