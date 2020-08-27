@@ -4,15 +4,15 @@ const { actions, reducer } = createSlice({
   name: 'modal',
   initialState: {
     procces: 'adding',
-    show: false
+    isShown: false
   },
   reducers: {
     showModal: (state, action) => {
       state.procces = action.payload;
-      state.show = true;
+      state.isShown = true;
     },
     hideModal: (state) => {
-      state.show = false;
+      state.isShown = false;
     }
   }
 });
@@ -20,5 +20,5 @@ const { actions, reducer } = createSlice({
 export default reducer;
 export const { showModal, hideModal } = actions;
 
-export const selectModalStatus = (state) => state.modal.show;
+export const selectModalStatus = (state) => state.modal.isShown;
 export const selectModalType = (state) => state.modal.procces;
