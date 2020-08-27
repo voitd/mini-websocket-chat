@@ -21,7 +21,7 @@ const { actions, reducer } = createSlice({
     }
   },
   extraReducers: {
-    'chat/removeChannel/fulfilled': (state, { meta }) => {
+    'chat/removeChannelSuccess': (state, { meta }) => {
       const id = meta.arg;
       return state.filter((message) => message.channelId !== id);
     }
