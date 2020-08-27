@@ -1,8 +1,8 @@
 import React from 'react';
-import Media from 'react-bootstrap/Media';
+import { Image, Media } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { selectChannelId } from '../reducers/channelSlice';
-import { selectMessages } from '../reducers/messageSlice';
+import { selectChannelId } from '../slices/channelSlice';
+import { selectMessages } from '../slices/messageSlice';
 
 const Message = () => {
   const messages = useSelector(selectMessages);
@@ -11,8 +11,15 @@ const Message = () => {
 
   return messagesByChannelID.map(({ timestamp, name, text, avatar, id }) => {
     return (
-      <Media key={id}>
-        <img width={64} height={64} className=" mr-2 p-1 rounded" src={avatar} alt="Avatar" />
+      <Media key={id} border="secondary">
+        <Image
+          width={64}
+          height={64}
+          roundedCircle
+          className="mr-2 p-1"
+          src={avatar}
+          alt="Avatar"
+        />
         <Media.Body>
           <h6>
             {name} <small>{timestamp}</small>
