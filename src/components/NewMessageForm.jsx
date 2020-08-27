@@ -18,6 +18,7 @@ const NewMessageForm = () => {
   const { name, avatar } = useContext(UserContext);
 
   const setFocus = () => inputRef.current.focus();
+
   useEffect(setFocus);
 
   const handleSubmit = async (values, actions) => {
