@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectChannel, updateActiveChannelID, selectChannelId } from './channelSlice';
+import { selectChannel, updateActiveChannelID, selectChannelId } from '../slices/channelSlice';
 
 export default () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default () => {
 
   return channels.map(({ id, name }) => (
     <Nav.Link disabled={channelId === id} key={id} onClick={handleToggleChannel(id)}>
-      <strong>{`#${name}`}</strong>
+      #<strong> {name}</strong>
     </Nav.Link>
   ));
 };

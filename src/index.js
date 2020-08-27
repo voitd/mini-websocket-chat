@@ -4,6 +4,7 @@ import 'regenerator-runtime/runtime';
 import '../assets/application.scss';
 
 import gon from 'gon';
+
 import app from './app';
 
 if (process.env.NODE_ENV !== 'production') {

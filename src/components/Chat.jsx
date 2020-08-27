@@ -1,30 +1,25 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
-import getModal from '../features/modals';
-import NewMessageForm from '../features/messages/NewMessageForm';
-import Message from '../features/messages/Message';
-import { showModal, selectModalStatus, selectModalType } from '../features/modals/modalSlice';
-import { selectChannel, selectChannelId } from '../features/channels/channelSlice';
+import getModal from './modals';
+import NewMessageForm from './NewMessageForm';
+import Message from './Message';
+import { showModal, selectModalStatus, selectModalType } from '../slices/modalSlice';
+import { selectChannel, selectChannelId } from '../slices/channelSlice';
 
 const Chat = () => {
-  const style = {
-    maxHeight: 'calc(100vh - 250px)',
-    overflowY: 'auto',
-    display: 'flex',
-    flexDirection: 'column-reverse'
-  };
-
   const dispatch = useDispatch();
-  const isShow = useSelector(selectModalStatus);
+  const isShown = useSelector(selectModalStatus);
   const modalType = useSelector(selectModalType);
   const channels = useSelector(selectChannel);
   const channelID = useSelector(selectChannelId);
-  const activeChannelName = channels.find((channel) => channel.id === channelID).name;
-  const isRemovableChannel = channels.find((channel) => channel.id === channelID).removable;
+  const activeChannel = channels.find((channel) => channel.id === channelID);
+  const { name: activeChannelName, removable: isRemovableChannel } = activeChannel;
 
   const renderModal = (type) => {
-    if (!type) return;
+    if (!type) {
+      return null;
+    }
 
     const Component = getModal(type);
     return <Component />;
@@ -32,8 +27,8 @@ const Chat = () => {
 
   const renderActionButtons = () => {
     const actions = {
-      renaming: '\u270D',
-      removing: '\u274C'
+      renaming: '✏️',
+      removing: '❌'
     };
 
     const handleShowModal = (type) => () => {
@@ -43,8 +38,8 @@ const Chat = () => {
     return Object.entries(actions).map(([action, emoji]) => (
       <Button
         key={action}
-        variant="outline-info"
-        className="m-1"
+        variant="outline"
+        className="mx-1"
         size="sm"
         onClick={handleShowModal(action)}>
         <span role="img" aria-label={action}>
@@ -57,16 +52,16 @@ const Chat = () => {
   return (
     <Card border="info" className="h-100 d-flex">
       <Card.Header className="d-flex font-weight-bold">
-        <span className="mr-auto m-1">#{activeChannelName} </span>
+        <span className="mr-auto m-1"># {activeChannelName} </span>
         <span>{isRemovableChannel && renderActionButtons()}</span>
       </Card.Header>
-      <Card.Body style={style}>
+      <Card.Body className="d-flex flex-column-reverse overflow-auto">
         <Message />
       </Card.Body>
       <Card.Footer className="text-muted">
         <NewMessageForm />
       </Card.Footer>
-      {isShow && renderModal(modalType)}
+      {isShown && renderModal(modalType)}
     </Card>
   );
 };

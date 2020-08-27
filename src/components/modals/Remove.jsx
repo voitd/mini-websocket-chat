@@ -1,21 +1,23 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import React from 'react';
+import { Button, FormGroup, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Modal, FormGroup, Button } from 'react-bootstrap';
-import { selectChannelId, removeChannel } from '../channels/channelSlice';
-import { hideModal } from './modalSlice';
+import { removeChannel, selectChannelId } from '../../slices/channelSlice';
+import { hideModal } from '../../slices/modalSlice';
 
 // BEGIN
 const Rename = () => {
   const dispatch = useDispatch();
   const channelID = useSelector(selectChannelId);
 
-  const onSubmit = (id) => (e) => {
+  const onSubmit = (id) => async (e) => {
     e.preventDefault();
     try {
-      dispatch(removeChannel(id));
+      const result = await dispatch(removeChannel(id));
+      unwrapResult(result);
       dispatch(hideModal());
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
   };
 

@@ -1,6 +1,9 @@
-# Slack-like-chat
+[![Actions Status](https://github.com/voitd/frontend-project-lvl4/workflows/slack-like-chat-ci/badge.svg)](https://github.com/voitd/frontend-project-lvl4/actions?query=workflow%3A"slack-like-chat-ci")
+[![Maintainability](https://api.codeclimate.com/v1/badges/3e8a891f7c8e7ce9f602/maintainability)](https://codeclimate.com/github/voitd/frontend-project-lvl4/maintainability)
 
-### Chat app write on React + Redux + Forms
+# Mini-Slack-Clone
+
+### Chat app write on React + Redux Toolkit + Formik
 
 > This is an educational project [Hexlet](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package).
 > Realtime chat app with websockets using Socket.io with React on the frontend with a Bootstrap UI, and
@@ -10,12 +13,11 @@
 
 ## Build status
 
-[![Actions Status](https://github.com/voitd/frontend-project-lvl4/workflows/slack-like-chat-ci/badge.svg)](https://github.com/voitd/frontend-project-lvl4/actions?query=workflow%3A"slack-like-chat-ci")
-[![Maintainability](https://api.codeclimate.com/v1/badges/3e8a891f7c8e7ce9f602/maintainability)](https://codeclimate.com/github/voitd/frontend-project-lvl4/maintainability)
-
 ### Screenshot
 
-<img width="820" alt="RSSReader-Hexlet-FrontEnd-lvl3" src="#">
+<img width="820" alt="mini-slack-clone" src="https://user-images.githubusercontent.com/60138143/88957488-9a667a00-d2a7-11ea-9875-71be31802e6e.png">
+
+In this projects coding only frontend part. Backend as starting template is [here](https://github.com/hexlet-components/projects-frontend-l4-server)
 
 ### Install
 
@@ -32,7 +34,7 @@ $ make start
 
 # Technologies
 
-- React + Redux + Forms
+- React + Redux Toolkit + Formik
 - Websockets
 - Ajax, REST
 - Bootstrap on React

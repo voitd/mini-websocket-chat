@@ -7,7 +7,7 @@ on:
   - push
 
 jobs:
-  run_linter:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,25 +15,16 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Run Node.js ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install npm packeges
-        run: |
-          make install
-        env:
-          CI: true
+      - name: Install
+        run: make install-deps
+      - name: Run build
+        run: make build
       - name: Run linter
-        run: |
-          make lint
-      - name: Test & publish code coverage
-        run: | 
-          make test
-#         uses: paambaati/codeclimate-action@v2.4.0
-#         env:
-#           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-#         with:
-#           coverageCommand: make test-coverage
-#           debug: true
+        run: make lint
+      - name: Run test
+        run: make test
