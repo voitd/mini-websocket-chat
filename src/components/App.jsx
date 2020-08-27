@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import { selectShowStatus } from '../reducers/alertSlice';
+import { selectShowStatus } from '../slices/alertSlice';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
 import Alert from './modals/Alert';

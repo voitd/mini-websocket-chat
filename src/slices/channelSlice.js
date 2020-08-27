@@ -37,6 +37,7 @@ const { actions, reducer } = createSlice({
     },
     renameChannelSuccess(state, { payload }) {
       const { name, id } = payload;
+
       const activeChannel = state.channels.find((channel) => channel.id === id);
       activeChannel.name = name;
     },

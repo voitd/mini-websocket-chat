@@ -3,8 +3,8 @@ import { useFormik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import { FormControl, FormGroup, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { renameChannel, selectChannelId } from '../../reducers/channelSlice';
-import { hideModal } from '../../reducers/modalSlice';
+import { renameChannel, selectChannelId } from '../../slices/channelSlice';
+import { hideModal } from '../../slices/modalSlice';
 
 // BEGIN
 const Rename = () => {

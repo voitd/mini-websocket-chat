@@ -77,7 +77,7 @@ const NewMessageForm = () => {
             Send
           </Button>
         </InputGroup.Append>
-        {!!formik.errors.text && (
+        {formik.errors.text && (
           <Form.Control.Feedback className="d-flex" type="invalid">
             {formik.errors.text}
           </Form.Control.Feedback>

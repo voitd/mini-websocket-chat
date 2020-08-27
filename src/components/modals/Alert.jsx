@@ -6,7 +6,7 @@ import {
   selectError,
   selectLoadingState,
   selectShowStatus
-} from '../../reducers/alertSlice';
+} from '../../slices/alertSlice';
 
 const AlertModal = () => {
   const dispatch = useDispatch();

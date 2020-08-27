@@ -4,8 +4,8 @@ import { Card, Button } from 'react-bootstrap';
 import getModal from './modals';
 import NewMessageForm from './NewMessageForm';
 import Message from './Message';
-import { showModal, selectModalStatus, selectModalType } from '../reducers/modalSlice';
-import { selectChannel, selectChannelId } from '../reducers/channelSlice';
+import { showModal, selectModalStatus, selectModalType } from '../slices/modalSlice';
+import { selectChannel, selectChannelId } from '../slices/channelSlice';
 
 const Chat = () => {
   const dispatch = useDispatch();

@@ -2,8 +2,8 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import React from 'react';
 import { Button, FormGroup, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeChannel, selectChannelId } from '../../reducers/channelSlice';
-import { hideModal } from '../../reducers/modalSlice';
+import { removeChannel, selectChannelId } from '../../slices/channelSlice';
+import { hideModal } from '../../slices/modalSlice';
 
 // BEGIN
 const Rename = () => {

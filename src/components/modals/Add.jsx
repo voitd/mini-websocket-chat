@@ -3,14 +3,15 @@ import { useFormik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import { FormControl, FormGroup, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { createChannel } from '../../reducers/channelSlice';
-import { hideModal } from '../../reducers/modalSlice';
+import { createChannel } from '../../slices/channelSlice';
+import { hideModal } from '../../slices/modalSlice';
 
 // BEGIN
 const Add = () => {
   const dispatch = useDispatch();
 
   const inputRef = useRef(null);
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
