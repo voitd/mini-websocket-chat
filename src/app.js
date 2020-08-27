@@ -1,18 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 import App from './components/App';
+import rootReducer from './slices';
 import {
   createChannelSuccess,
   removeChannelSuccess,
   renameChannelSuccess,
   updateActiveChannelID,
   updateChannels
-} from './reducers/channelSlice';
-import { createNewMessageSuccess, updateMessages } from './reducers/messageSlice';
-import rootReducer from './reducers';
+} from './slices/channelSlice';
+import { createNewMessageSuccess, updateMessages } from './slices/messageSlice';
 import getUserData from './utils/getUserData';
 
 export const UserContext = React.createContext({ name: 'Guess' });
@@ -25,7 +26,6 @@ const app = ({ channels, currentChannelId, messages }) => {
   /* eslint-enable */
 
   const socket = io();
-  const userData = getUserData();
   const store = configureStore({ reducer: rootReducer, devtoolMiddleware });
 
   store.dispatch(updateChannels(channels));
@@ -50,6 +50,9 @@ const app = ({ channels, currentChannelId, messages }) => {
   socket.on('removeChannel', ({ data }) => {
     store.dispatch(removeChannelSuccess(data));
   });
+
+  const userData = Cookies.getJSON('user') ?? getUserData();
+  Cookies.set('user', userData);
 
   render(
     <Provider store={store}>
