@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <Card border="info" className="h-100">
       <Card.Header className="d-flex justify-content-between font-weight-bold">
-        <span className="mt-1">CHANNELS</span>
+        <span className="mt-1">Channels</span>
         <Button variant="outline" size="sm" onClick={handleShowModal}>
           <span role="img" aria-label="add">
             ➕

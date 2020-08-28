@@ -25,6 +25,7 @@ const Chat = () => {
     return <Component />;
   };
 
+  // TODO: remake as SVG
   const renderActionButtons = () => {
     const actions = {
       renaming: '✏️',

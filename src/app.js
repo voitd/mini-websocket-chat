@@ -17,7 +17,6 @@ import { createNewMessageSuccess, updateMessages } from './slices/messageSlice';
 import getUserData from './utils/getUserData';
 
 export const UserContext = React.createContext({ name: 'Guess' });
-socket();
 const app = ({ channels, currentChannelId, messages }) => {
   /* eslint-disable no-underscore-dangle */
   const ext = window.__REDUX_DEVTOOLS_EXTENSION__;

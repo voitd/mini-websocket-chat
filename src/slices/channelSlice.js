@@ -61,3 +61,5 @@ export const {
 
 export const selectChannel = (state) => state.chat.channels;
 export const selectChannelId = (state) => state.chat.currentChannelId;
+export const selectChannelMessageCount = (state) =>
+  state.messages.filter((message) => message.channelId === state.chat.currentChannelId).length;
