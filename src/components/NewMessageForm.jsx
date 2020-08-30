@@ -1,15 +1,14 @@
 import { unwrapResult } from '@reduxjs/toolkit';
+import formatISO9075 from 'date-fns/formatISO9075';
 import { useFormik } from 'formik';
 import React, { useContext, useEffect, useRef } from 'react';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { UserContext } from '../app';
 import { selectChannelId } from '../slices/channelSlice';
 import { createNewMessage } from '../slices/messageSlice';
-
-const time = new Date();
-const formattedTime = time.toLocaleString('ru', { hour: 'numeric', minute: 'numeric' });
 
 const NewMessageForm = () => {
   const dispatch = useDispatch();
@@ -18,6 +17,8 @@ const NewMessageForm = () => {
 
   const { name, avatar } = useContext(UserContext);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -25,6 +26,9 @@ const NewMessageForm = () => {
   const handleSubmit = async (values, actions) => {
     const { text } = values;
     const { resetForm, setSubmitting, setErrors } = actions;
+
+    const time = new Date();
+    const formattedTime = formatISO9075(time, { representation: 'time' });
 
     const message = {
       channelId: currentChannelId,
@@ -49,7 +53,7 @@ const NewMessageForm = () => {
       text: ''
     },
     validationSchema: Yup.object({
-      text: Yup.string().trim().required('Required')
+      text: Yup.string().trim().required(t('errors.required'))
     }),
     onSubmit: handleSubmit
   });
@@ -58,7 +62,7 @@ const NewMessageForm = () => {
     <Form onSubmit={formik.handleSubmit}>
       <InputGroup className="p-2">
         <FormControl
-          placeholder="Type message..."
+          placeholder={t('placeholder')}
           id="text"
           name="text"
           ref={inputRef}
@@ -67,14 +71,13 @@ const NewMessageForm = () => {
           value={formik.values.text}
           disabled={formik.isSubmitting}
           isInvalid={!!formik.errors.text}
-          required
         />
         <InputGroup.Append>
           <Button
             type="submit"
             disabled={formik.isSubmitting}
             variant={formik.errors.text ? 'outline-danger' : 'outline-info'}>
-            Send
+            {t('buttons.send')}
           </Button>
         </InputGroup.Append>
         {formik.errors.text && (
