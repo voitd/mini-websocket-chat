@@ -1,0 +1,23 @@
+{
+  "titles": {
+    "channels": "Каналы",
+    "channelAdd": "Добавить канал",
+    "channelRename": "Переименовать канал",
+    "channelRemove": "Удалить канал"
+  },
+  "placeholders": {
+    "addMessage": "Введите сообщение...",
+    "newNameChannel": "Введите название канала...",
+    "confirmChannelRemove": "Вы действительно хотите удалить канал {{name}}?"
+  },
+  "buttons": {
+    "ok":"OK",
+    "rename":"Переименовать",
+    "cancel":"Отмена",
+    "send":"Отправить"
+  },
+  "errors": {
+    "title": "Повторите попытку через некоторое время",
+    "required":"Сначала введите сообщение"
+  }
+}

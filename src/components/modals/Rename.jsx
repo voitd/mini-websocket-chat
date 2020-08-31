@@ -53,13 +53,13 @@ const Rename = () => {
             <input
               type="submit"
               className="btn btn-primary mr-2"
-              value="Rename"
+              value={t('buttons.rename')}
               disabled={formik.isSubmitting}
             />
             <input
               type="reset"
               className="btn btn-secondary"
-              value="Cancel"
+              value={t('buttons.cancel')}
               disabled={formik.isSubmitting}
             />
           </form>

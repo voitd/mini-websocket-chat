@@ -1,0 +1,23 @@
+{
+  "titles": {
+    "channels": "Channels",
+    "channelAdd": "Add channel",
+    "channelRename": "Rename channel",
+    "channelRemove": "Remove channel"
+  },
+  "placeholders": {
+    "addMessage": "Type message...",
+    "newNameChannel": "Enter channel name...",
+    "confirmChannelRemove": "You are sure delete channel {{name}}?"
+  },
+  "buttons": {
+    "ok": "OK",
+    "rename":"Rename",
+    "cancel": "Cancel",
+    "send": "Send"
+  },
+  "errors": {
+    "title": "Try again a few minut leter",
+    "required": "Type message first"
+  }
+}

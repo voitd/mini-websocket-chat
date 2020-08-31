@@ -59,5 +59,10 @@ export const {
   removeChannelSuccess
 } = actions;
 
-export const selectChannel = (state) => state.chat.channels;
-export const selectChannelId = (state) => state.chat.currentChannelId;
+export const selectChannel = ({ chat }) => chat.channels;
+export const selectChannelId = ({ chat }) => chat.currentChannelId;
+export const selectCurrentChannel = ({ chat }) => {
+  const { channels, currentChannelId } = chat;
+  const filtered = channels.find((channel) => channel.id === currentChannelId);
+  return filtered;
+};

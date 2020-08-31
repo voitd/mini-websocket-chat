@@ -1,14 +1,14 @@
-import { unwrapResult } from '@reduxjs/toolkit';
-import formatISO9075 from 'date-fns/formatISO9075';
-import { useFormik } from 'formik';
-import React, { useContext, useEffect, useRef } from 'react';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import React, { useContext, useEffect, useRef } from 'react';
 import * as Yup from 'yup';
+import formatISO9075 from 'date-fns/formatISO9075';
+
 import { UserContext } from '../app';
-import { selectChannelId } from '../slices/channelSlice';
 import { createNewMessage } from '../slices/messageSlice';
+import { selectChannelId } from '../slices/channelSlice';
 
 const NewMessageForm = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const NewMessageForm = () => {
 
   const handleSubmit = async (values, actions) => {
     const { text } = values;
-    const { resetForm, setSubmitting, setErrors } = actions;
+    const { resetForm, setSubmitting } = actions;
 
     const time = new Date();
     const formattedTime = formatISO9075(time, { representation: 'time' });
@@ -38,14 +38,9 @@ const NewMessageForm = () => {
       avatar
     };
 
-    try {
-      const result = await dispatch(createNewMessage(message));
-      unwrapResult(result);
-      resetForm();
-      setSubmitting(false);
-    } catch (err) {
-      setErrors(err.message);
-    }
+    await dispatch(createNewMessage(message));
+    setSubmitting(false);
+    resetForm();
   };
 
   const formik = useFormik({
@@ -62,7 +57,7 @@ const NewMessageForm = () => {
     <Form onSubmit={formik.handleSubmit}>
       <InputGroup className="p-2">
         <FormControl
-          placeholder={t('placeholder')}
+          placeholder={t('placeholders.addMessage')}
           id="text"
           name="text"
           ref={inputRef}
