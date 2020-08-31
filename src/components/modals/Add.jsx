@@ -1,14 +1,17 @@
-import { unwrapResult } from '@reduxjs/toolkit';
-import { useFormik } from 'formik';
-import React, { useEffect, useRef } from 'react';
 import { FormControl, FormGroup, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import React, { useEffect, useRef } from 'react';
+
 import { createChannel } from '../../slices/channelSlice';
 import { hideModal } from '../../slices/modalSlice';
 
 // BEGIN
 const Add = () => {
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const inputRef = useRef(null);
 
@@ -22,23 +25,18 @@ const Add = () => {
 
   const formik = useFormik({
     initialValues: { name: '' },
-    onSubmit: async (values, { setErrors }) => {
-      try {
-        const result = await dispatch(createChannel(values.name));
-        unwrapResult(result);
-        dispatch(hideModal());
-      } catch (err) {
-        setErrors(err);
-      }
-    },
-    onReset: () => handleCloseModal()
+    onReset: () => handleCloseModal(),
+    onSubmit: async ({ name }) => {
+      await dispatch(createChannel(name));
+      dispatch(hideModal());
+    }
   });
 
   return (
     <>
       <Modal show onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Create channel</Modal.Title>
+          <Modal.Title>{t('titles.channelAdd')}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
