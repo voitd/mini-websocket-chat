@@ -1,6 +1,8 @@
-import React from 'react';
 import { Alert, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import React from 'react';
+
 import {
   clearError,
   selectError,
@@ -10,6 +12,8 @@ import {
 
 const AlertModal = () => {
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const error = useSelector(selectError);
   const isShown = useSelector(selectShowStatus);
@@ -22,7 +26,7 @@ const AlertModal = () => {
   const renderHeader = () => (
     <>
       <Alert.Heading> {error}</Alert.Heading>
-      <p>Try again in a few minutes</p>
+      <p>{t('errors.title')}</p>
     </>
   );
 

@@ -16,11 +16,11 @@ export default () => {
 
   return channels.map(({ id, name }) => {
     const currentChannelId = channelId === id;
-    const channelMessagesCount = messages.filter((message) => message.channelId === id).length;
+    const channelMessages = messages.filter((message) => message.channelId === id);
     return (
       <Nav.Link disabled={currentChannelId} key={id} onClick={handleToggleChannel(id)}>
         #<strong> {name} </strong>
-        {!currentChannelId && <span className="badge badge-info">{channelMessagesCount}</span>}
+        {!currentChannelId && <span className="badge badge-info">{channelMessages.length}</span>}
       </Nav.Link>
     );
   });

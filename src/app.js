@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import './i18n';
 import Cookies from 'js-cookie';
 import React from 'react';
 import { render } from 'react-dom';

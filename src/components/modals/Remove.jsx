@@ -35,9 +35,9 @@ const Rename = () => {
             <FormGroup>
               <Trans i18nKey="placeholders.confirmChannelRemove">{{ name }}</Trans>
             </FormGroup>
-            <input type="submit" className="btn btn-danger mr-2" value="Yes" />
+            <input type="submit" className="btn btn-danger mr-2" value={t('buttons.ok')} />
             <Button variant="secondary" onClick={handleCloseModal}>
-              {t('buttons.ok')}
+              {t('buttons.cancel')}
             </Button>{' '}
           </form>
         </Modal.Body>
