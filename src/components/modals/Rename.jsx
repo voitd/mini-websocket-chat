@@ -1,15 +1,16 @@
-import { unwrapResult } from '@reduxjs/toolkit';
-import { useFormik } from 'formik';
-import React, { useEffect, useRef } from 'react';
 import { FormControl, FormGroup, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { renameChannel, selectChannelId } from '../../slices/channelSlice';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import React, { useEffect, useRef } from 'react';
 import { hideModal } from '../../slices/modalSlice';
+import { renameChannel, selectChannelId } from '../../slices/channelSlice';
 
-// BEGIN
 const Rename = () => {
   const dispatch = useDispatch();
   const channelID = useSelector(selectChannelId);
+
+  const { t } = useTranslation();
 
   const inputRef = useRef(null);
   useEffect(() => {
@@ -22,23 +23,18 @@ const Rename = () => {
 
   const formik = useFormik({
     initialValues: { name: '', id: channelID },
-    onSubmit: async (values, { setErrors }) => {
-      try {
-        const result = await dispatch(renameChannel(values));
-        unwrapResult(result);
-        dispatch(hideModal());
-      } catch (err) {
-        setErrors(err);
-      }
-    },
-    onReset: () => handleCloseModal()
+    onReset: () => handleCloseModal(),
+    onSubmit: async (values) => {
+      await dispatch(renameChannel(values));
+      dispatch(hideModal());
+    }
   });
 
   return (
     <>
       <Modal show onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Rename channel</Modal.Title>
+          <Modal.Title>{t('titles.channelRename')}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
