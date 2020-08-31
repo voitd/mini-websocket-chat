@@ -1,24 +1,22 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import React from 'react';
 import { Button, FormGroup, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeChannel, selectChannelId } from '../../slices/channelSlice';
+import { useTranslation, Trans } from 'react-i18next';
 import { hideModal } from '../../slices/modalSlice';
+import { removeChannel, selectChannelId, selectCurrentChannel } from '../../slices/channelSlice';
 
 // BEGIN
 const Rename = () => {
   const dispatch = useDispatch();
   const channelID = useSelector(selectChannelId);
+  const { name } = useSelector(selectCurrentChannel);
+
+  const { t } = useTranslation();
 
   const onSubmit = (id) => async (e) => {
     e.preventDefault();
-    try {
-      const result = await dispatch(removeChannel(id));
-      unwrapResult(result);
-      dispatch(hideModal());
-    } catch (err) {
-      throw new Error(err);
-    }
+    await dispatch(removeChannel(id));
+    dispatch(hideModal());
   };
 
   const handleCloseModal = () => {
@@ -29,15 +27,17 @@ const Rename = () => {
     <>
       <Modal show onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove</Modal.Title>
+          <Modal.Title>{t('titles.channelRemove')}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <form onSubmit={onSubmit(channelID)}>
-            <FormGroup>You are sure delete this channel?</FormGroup>
+            <FormGroup>
+              <Trans i18nKey="placeholders.confirmChannelRemove">{{ name }}</Trans>
+            </FormGroup>
             <input type="submit" className="btn btn-danger mr-2" value="Yes" />
             <Button variant="secondary" onClick={handleCloseModal}>
-              No
+              {t('buttons.ok')}
             </Button>{' '}
           </form>
         </Modal.Body>
