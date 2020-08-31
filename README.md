@@ -40,6 +40,7 @@ $ make start
 - Bootstrap on React
 - Webpack
 - Heroku
+- i18next
 
 ## License
 
