@@ -30,7 +30,7 @@ const Chat = () => {
     <Card border="info" className="h-100 d-flex">
       <Card.Header className="d-flex font-weight-bold">
         <span className="mr-auto m-1"># {activeChannelName} </span>
-        <span>{isRemovableChannel && <ActionButtons />}</span>
+        {isRemovableChannel && <ActionButtons />}
       </Card.Header>
       <Card.Body className="d-flex flex-column-reverse overflow-auto">
         <Message />
