@@ -1,14 +1,15 @@
+import { Card } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Card, Button } from 'react-bootstrap';
-import getModal from './modals';
-import NewMessageForm from './NewMessageForm';
-import Message from './Message';
-import { showModal, selectModalStatus, selectModalType } from '../slices/modalSlice';
+
 import { selectChannel, selectChannelId } from '../slices/channelSlice';
+import { selectModalStatus, selectModalType } from '../slices/modalSlice';
+import ActionButtons from './ActionButtons';
+import Message from './Message';
+import NewMessageForm from './NewMessageForm';
+import getModal from './modals';
 
 const Chat = () => {
-  const dispatch = useDispatch();
   const isShown = useSelector(selectModalStatus);
   const modalType = useSelector(selectModalType);
   const channels = useSelector(selectChannel);
@@ -25,36 +26,11 @@ const Chat = () => {
     return <Component />;
   };
 
-  // TODO: remake as SVG
-  const renderActionButtons = () => {
-    const actions = {
-      renaming: '✏️',
-      removing: '❌'
-    };
-
-    const handleShowModal = (type) => () => {
-      dispatch(showModal(type));
-    };
-
-    return Object.entries(actions).map(([action, emoji]) => (
-      <Button
-        key={action}
-        variant="outline"
-        className="mx-1"
-        size="sm"
-        onClick={handleShowModal(action)}>
-        <span role="img" aria-label={action}>
-          {emoji}
-        </span>
-      </Button>
-    ));
-  };
-
   return (
     <Card border="info" className="h-100 d-flex">
       <Card.Header className="d-flex font-weight-bold">
         <span className="mr-auto m-1"># {activeChannelName} </span>
-        <span>{isRemovableChannel && renderActionButtons()}</span>
+        {isRemovableChannel && <ActionButtons />}
       </Card.Header>
       <Card.Body className="d-flex flex-column-reverse overflow-auto">
         <Message />

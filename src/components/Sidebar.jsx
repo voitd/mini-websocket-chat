@@ -6,6 +6,8 @@ import React from 'react';
 import { showModal } from '../slices/modalSlice';
 import Channels from './Channels';
 
+import AddIcon from '../../assets/icons/add.svg';
+
 const Sidebar = () => {
   const dispatch = useDispatch();
 
@@ -20,9 +22,7 @@ const Sidebar = () => {
       <Card.Header className="d-flex justify-content-between font-weight-bold">
         <span className="mt-1">{t('titles.channels')}</span>
         <Button variant="outline" size="sm" onClick={handleShowModal}>
-          <span role="img" aria-label="add">
-            ➕
-          </span>
+          <AddIcon fill="teal" />
         </Button>
       </Card.Header>
       <Card.Header className="h-100">

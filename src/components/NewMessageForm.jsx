@@ -1,13 +1,14 @@
-import formatISO9075 from 'date-fns/formatISO9075';
-import { useFormik } from 'formik';
-import React, { useContext, useEffect, useRef } from 'react';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import React, { useContext, useEffect, useRef } from 'react';
 import * as Yup from 'yup';
+import formatISO9075 from 'date-fns/formatISO9075';
+
 import { UserContext } from '../app';
-import { selectChannelId } from '../slices/channelSlice';
 import { createNewMessage } from '../slices/messageSlice';
+import { selectChannelId } from '../slices/channelSlice';
 
 const NewMessageForm = () => {
   const dispatch = useDispatch();
