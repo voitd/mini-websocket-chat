@@ -25,8 +25,12 @@ const Rename = () => {
     initialValues: { name: '', id: channelID },
     onReset: () => handleCloseModal(),
     onSubmit: async (values) => {
-      await dispatch(renameChannel(values));
-      dispatch(hideModal());
+      try {
+        await dispatch(renameChannel(values));
+        dispatch(hideModal());
+      } catch (err) {
+        throw new Error(err);
+      }
     }
   });
 

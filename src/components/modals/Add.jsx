@@ -27,8 +27,12 @@ const Add = () => {
     initialValues: { name: '' },
     onReset: () => handleCloseModal(),
     onSubmit: async ({ name }) => {
-      await dispatch(createChannel(name));
-      dispatch(hideModal());
+      try {
+        await dispatch(createChannel(name));
+        dispatch(hideModal());
+      } catch (err) {
+        throw new Error(err);
+      }
     }
   });
 

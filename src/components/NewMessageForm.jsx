@@ -38,9 +38,13 @@ const NewMessageForm = () => {
       avatar
     };
 
-    await dispatch(createNewMessage(message));
-    setSubmitting(false);
-    resetForm();
+    try {
+      await dispatch(createNewMessage(message));
+      setSubmitting(false);
+      resetForm();
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
   const formik = useFormik({

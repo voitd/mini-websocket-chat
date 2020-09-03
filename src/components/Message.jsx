@@ -14,17 +14,14 @@ const Message = () => {
 
   return messagesByChannelID.map(({ timestamp, name, text, avatar, id }) => {
     const isSelfMessage = CurrentUserName === name;
-    const classnames = cn({
+    const messageClassNames = cn({
       'm-1 p-2': true,
       'text-wrap text-break': true,
       'bg-light rounded-pill': isSelfMessage
-      // 'align-self-start border-info': !isSelfMessage,
-      // 'align-self-end border-primary': isSelfMessage,
-      // 'border  rounded': true
     });
 
     return (
-      <Media key={id} className={classnames}>
+      <Media key={id} className={messageClassNames}>
         <Image
           width={64}
           height={64}
