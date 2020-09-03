@@ -11,9 +11,8 @@
 
 - [DEMO on Heroku](https://afternoon-woodland-62064.herokuapp.com/)
 
-## Build status
 
-### Screenshot
+###  Screenshot
 
 <img width="820" alt="mini-slack-clone" src="https://user-images.githubusercontent.com/60138143/88957488-9a667a00-d2a7-11ea-9875-71be31802e6e.png">
 
