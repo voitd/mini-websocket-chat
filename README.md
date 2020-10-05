@@ -10,7 +10,7 @@
 > deploing into Heroku.
 > User is random generated name and avatar using Faker
 
-- [DEMO on Heroku](https://aternoon-woodland-62064.herokuapp.com/)
+- [DEMO on Heroku](https://afternoon-woodland-62064.herokuapp.com/)
 
 In this projects coding only frontend part. Backend as starting template is [here](https://github.com/hexlet-components/projects-frontend-l4-server)
 
