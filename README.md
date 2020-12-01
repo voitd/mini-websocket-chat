@@ -46,4 +46,4 @@ $ make start
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)f
+[MIT](https://choosealicense.com/licenses/mit/)
