@@ -1,7 +1,7 @@
+![mini-websockets-chat](https://socialify.git.ci/voitd/mini-websockets-chat/image?description=1&language=1&pattern=Floating%20Cogs&theme=Light)
 [![Actions Status](https://github.com/voitd/mini-websockets-chat/workflows/slack-like-chat-ci/badge.svg)](https://github.com/voitd/mini-websockets-chat/actions?query=workflow%3A"slack-like-chat-ci")
 [![Maintainability](https://api.codeclimate.com/v1/badges/3e8a891f7c8e7ce9f602/maintainability)](https://codeclimate.com/github/voitd/mini-websockets-chat/maintainability)
 
-# Mini Websockets Chat
 
 ### Chat app write on React + Redux Toolkit + Formik
 
